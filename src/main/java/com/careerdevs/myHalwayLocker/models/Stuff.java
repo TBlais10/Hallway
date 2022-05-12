@@ -9,11 +9,6 @@ import javax.persistence.*;
 public class Stuff {
     @Id @GeneratedValue
     private Long id;
-
-//    @ManyToOne
-//    @JoinColumn(name = "student_id", referencedColumnName = "id")
-//    private Student student;
-
     private String title;
     private String content;
 
@@ -48,11 +43,4 @@ public class Stuff {
         this.content = content;
     }
 
-//    public Student getStudent() {
-//        return student;
-//    }
-//
-//    public void setStudent(Student student) {
-//        this.student = student;
-//    }
 }

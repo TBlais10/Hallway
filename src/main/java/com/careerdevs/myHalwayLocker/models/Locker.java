@@ -12,20 +12,16 @@ public class Locker {
     @JoinColumn(name = "locker_id", referencedColumnName = "id")
     private Student student;
 
-//    @OneToOne
-//    private Student student;
-
-
-//    @OneToMany
-//    @JoinColumn(name = "locker_id", referencedColumnName = "id")
-//    private List<Stuff> myStuff;
+    @OneToMany
+    @JoinColumn(name = "locker_id", referencedColumnName = "id")
+    private List<Stuff> myStuff;
 
     public Locker() {
     }
 
-//    public Locker(Student student) {
-//        this.student = student;
-//    }
+    public Locker(Student student) {
+        this.student = student;
+    }
 
     public Long getId() {
         return id;
@@ -35,11 +31,11 @@ public class Locker {
         this.id = id;
     }
 
-//    public Student getStudent() {
-//        return student;
-//    }
+    public Student getStudent() {
+        return student;
+    }
 
-//    public void setStudent(Student student) {
-//        this.student = student;
-//    }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

@@ -8,19 +8,9 @@ import java.util.List;
 public class Student {
     @Id @GeneratedValue private Long id;
 
-
-//    @OneToMany
-//    @JoinColumn(name = "student_id", referencedColumnName = "id")
-//    private List<Stuff> myStuff;
-
-
-//    @OneToMany
-//    @JoinColumn(name = "student_id", referencedColumnName = "id")
-//    private List<Stuff> myStuff;
-
-//    @OneToOne
-//    @JoinColumn(name = "locker_id", referencedColumnName = "id")
-//    private Locker locker;
+    @OneToOne
+    @JoinColumn(name = "locker_id", referencedColumnName = "id")
+    private Locker locker;
 
     private String firstName;
     private String lastName;
@@ -28,8 +18,8 @@ public class Student {
 
     public Student() {}
 
-    public Student(String firstName, String lastName, Integer cohort) {
-//        this.locker = locker;
+    public Student(Locker locker, String firstName, String lastName, Integer cohort) {
+        this.locker = locker;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cohort = cohort;
@@ -67,11 +57,11 @@ public class Student {
         this.cohort = cohort;
     }
 
-//    public Locker getLocker() {
-//        return locker;
-//    }
-//
-//    public void setLocker(Locker locker) {
-//        this.locker = locker;
-//    }
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
 }
