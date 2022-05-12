@@ -1,5 +1,6 @@
 package com.careerdevs.myHalwayLocker.Security.services;
 
+import com.careerdevs.myHalwayLocker.Auth.User;
 import com.careerdevs.myHalwayLocker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
