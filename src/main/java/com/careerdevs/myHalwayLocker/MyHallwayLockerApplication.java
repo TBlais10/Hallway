@@ -44,19 +44,22 @@ public class MyHallwayLockerApplication {
 		if (roleCheck < ERole.values().length){
 			int id = 1;
 			for (ERole role : ERole.values()) {
-				try	{
-					Connection conn = DriverManager.getConnection(myUrl, username, password);
-					Class.forName(myDriver);
-					String query = "Insert into role (id, name) values (?,?)";
-					PreparedStatement statement = conn.prepareStatement(query);
+				if (roleRepository.findByName(role).isEmpty()){
+					try	{
+						Connection conn = DriverManager.getConnection(myUrl, username, password);
+						Class.forName(myDriver);
+						String query = "Insert into role (id, name) values (?,?)";
+						PreparedStatement statement = conn.prepareStatement(query);
 
-					statement.setString(1, Integer.toString(id));
-					statement.setString(2, role.toString());
+						statement.setString(1, Integer.toString(id));
+						statement.setString(2, role.toString());
 
-					statement.executeUpdate();
-				} catch (Exception e){
-					System.out.println(e.getMessage());
+						statement.executeUpdate();
+					} catch (Exception e){
+						System.out.println(e.getMessage());
+					}
 				}
+				id++;
 			}
 		}
 	}
