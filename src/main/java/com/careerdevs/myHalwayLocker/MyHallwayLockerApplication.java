@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 @SpringBootApplication
-public class MyHalwayLockerApplication {
+public class MyHallwayLockerApplication {
 	@Autowired
 	private UserRepository userRepository;
 
@@ -34,7 +34,7 @@ public class MyHalwayLockerApplication {
 	public String password;
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyHalwayLockerApplication.class, args);
+		SpringApplication.run(MyHallwayLockerApplication.class, args);
 	}
 
 	@Bean
