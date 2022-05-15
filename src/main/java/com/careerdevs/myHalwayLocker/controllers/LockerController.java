@@ -59,4 +59,16 @@ public class LockerController {
         return new ResponseEntity<>(repository.save(newLocker), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/deleteLocker/{id}")
+    public ResponseEntity<String> deleteLocker (@PathVariable Long id){
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null){
+            return null;
+        }
+
+        repository.deleteById(id);
+        return new ResponseEntity<>("Deleted Locker", HttpStatus.OK);
+    }
+
 }

@@ -74,7 +74,6 @@ public class ContentController {
 
     @PostMapping("/newContent")
     public ResponseEntity<Content> createContent(@RequestBody Content newContent) {
-
         User currentUser = userService.getCurrentUser();
 
         if (currentUser == null){
@@ -86,5 +85,35 @@ public class ContentController {
         currentStudent.getLocker().getMyContent().add(newContent);
 
         return new ResponseEntity<>(repository.save(newContent), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public @ResponseBody Content updateContent(@PathVariable Long id, @RequestBody Content updates){
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null){
+            return null;
+        }
+
+        Content edits = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (updates.getTitle() != null) edits.setTitle(updates.getTitle());
+        if (updates.getContent() != null) edits.setContent(updates.getContent());
+
+        return repository.save(edits);
+    }
+
+    @DeleteMapping("/deleteContent/{id}")
+    public ResponseEntity<String> deleteContent(@PathVariable Long id){
+        User currentUser = userService.getCurrentUser();
+
+        if (currentUser == null){
+            return null;
+        }
+
+        String content = repository.getById(id).getTitle();
+        repository.deleteById(id);
+
+        return new ResponseEntity<>("Deleted content " + content, HttpStatus.OK);
     }
 }
