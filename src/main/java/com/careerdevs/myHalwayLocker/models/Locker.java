@@ -14,7 +14,7 @@ public class Locker {
 
     @OneToMany
     @JoinColumn(name = "locker_id", referencedColumnName = "id")
-    private List<Stuff> myStuff;
+    private List<Content> myContent;
 
     public Locker() {
     }
@@ -37,5 +37,13 @@ public class Locker {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public List<Content> getMyContent() {
+        return myContent;
+    }
+
+    public void setMyContent(List<Content> myContent) {
+        this.myContent = myContent;
     }
 }

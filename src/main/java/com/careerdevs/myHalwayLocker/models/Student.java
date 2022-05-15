@@ -1,6 +1,10 @@
 package com.careerdevs.myHalwayLocker.models;
 
 
+import com.careerdevs.myHalwayLocker.Auth.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,15 +18,21 @@ public class Student {
 
     private String firstName;
     private String lastName;
-    private Integer cohort;
+    private List<Integer> cohort;
+
+    @OneToOne
+    @JsonIgnoreProperties("password")
+    @JoinColumn(name="user_id", referencedColumnName = "id")
+    private User user;
 
     public Student() {}
 
-    public Student(Locker locker, String firstName, String lastName, Integer cohort) {
+    public Student(Long id, Locker locker, String firstName, String lastName, User user) {
+        this.id = id;
         this.locker = locker;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.cohort = cohort;
+        this.user = user;
     }
 
     public Long getId() {
@@ -49,11 +59,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Integer getCohort() {
+    public List<Integer> getCohort() {
         return cohort;
     }
 
-    public void setCohort(Integer cohort) {
+    public void setCohort(List<Integer> cohort) {
         this.cohort = cohort;
     }
 
@@ -63,5 +73,13 @@ public class Student {
 
     public void setLocker(Locker locker) {
         this.locker = locker;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

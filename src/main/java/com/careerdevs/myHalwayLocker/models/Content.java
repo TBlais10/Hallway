@@ -4,17 +4,20 @@ package com.careerdevs.myHalwayLocker.models;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
-public class Stuff {
+public class Content {
     @Id @GeneratedValue
     private Long id;
     private String title;
+
+    @Size(max = 500)
     private String content;
 
-    public Stuff() {}
+    public Content() {}
 
-    public Stuff(String title, String content) {
+    public Content(String title, String content) {
         this.title = title;
         this.content = content;
     }
