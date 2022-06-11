@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Student {
+public class Person {
     @Id @GeneratedValue private Long id;
 
     @OneToOne
@@ -25,9 +25,9 @@ public class Student {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
-    public Student() {}
+    public Person() {}
 
-    public Student(Long id, Locker locker, String firstName, String lastName, User user) {
+    public Person(Long id, Locker locker, String firstName, String lastName, User user) {
         this.id = id;
         this.locker = locker;
         this.firstName = firstName;

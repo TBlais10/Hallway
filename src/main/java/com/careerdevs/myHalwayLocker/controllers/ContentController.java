@@ -5,10 +5,10 @@ import com.careerdevs.myHalwayLocker.Auth.User;
 import com.careerdevs.myHalwayLocker.Security.services.UserService;
 import com.careerdevs.myHalwayLocker.models.Content;
 import com.careerdevs.myHalwayLocker.models.Locker;
-import com.careerdevs.myHalwayLocker.models.Student;
+import com.careerdevs.myHalwayLocker.models.Person;
 import com.careerdevs.myHalwayLocker.repositories.ContentRepository;
 import com.careerdevs.myHalwayLocker.repositories.LockerRepository;
-import com.careerdevs.myHalwayLocker.repositories.StudentRepository;
+import com.careerdevs.myHalwayLocker.repositories.PersonRepository;
 import com.careerdevs.myHalwayLocker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class ContentController {
     private UserService userService;
 
     @Autowired
-    private StudentRepository studentRepository;
+    private PersonRepository studentRepository;
 
     @Autowired
     private ContentRepository repository;
@@ -80,9 +80,9 @@ public class ContentController {
             return null;
         }
 
-        Student currentStudent = studentRepository.findById(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Person currentPerson = studentRepository.findById(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        currentStudent.getLocker().getMyContent().add(newContent);
+        currentPerson.getLocker().getMyContent().add(newContent);
 
         return new ResponseEntity<>(repository.save(newContent), HttpStatus.CREATED);
     }

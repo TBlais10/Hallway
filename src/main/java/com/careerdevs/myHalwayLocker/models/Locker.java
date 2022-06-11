@@ -10,7 +10,7 @@ public class Locker {
 
     @OneToOne
     @JoinColumn(name = "locker_id", referencedColumnName = "id")
-    private Student student;
+    private Person person;
 
     @OneToMany
     @JoinColumn(name = "locker_id", referencedColumnName = "id")
@@ -19,8 +19,8 @@ public class Locker {
     public Locker() {
     }
 
-    public Locker(Student student) {
-        this.student = student;
+    public Locker(Person person) {
+        this.person = person;
     }
 
     public Long getId() {
@@ -31,12 +31,12 @@ public class Locker {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public Person getStudent() {
+        return person;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(Person person) {
+        this.person = person;
     }
 
     public List<Content> getMyContent() {
